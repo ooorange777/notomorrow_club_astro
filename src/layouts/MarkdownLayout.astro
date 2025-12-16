@@ -1,0 +1,23 @@
+---
+const { frontmatter } = Astro.props;
+---
+<!doctype html>
+<html data-theme="garden" lang="zh-cn">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/safari-pinned-tab.svg" />
+		<title>{frontmatter.title}</title>
+		<meta name="author" content="ooorange" />
+		<meta name="description" content={frontmatter.description} />
+		<meta name="generator" content={Astro.generator} />
+	</head>
+
+	<body class="box-border mx-0 my-0 bg-base-100">
+    <div class="container max-w-screen-lg mx-auto font-serif text-xs">
+      <div class="grid grid-cols-3 gap-10">
+        
+      </div>
+    </div>
+  </body>
+</html>
