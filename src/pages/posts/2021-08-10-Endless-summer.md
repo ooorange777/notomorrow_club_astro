@@ -1,10 +1,13 @@
 ---
 title: 'Endless Summer'
-date: '2021-08-10'
-slug: '2021081001'
+date: 2021-08-10T11:56:52+08:00
+slug: 2021081001
 draft: false
 tags: ['杂谈']
+categories: ['生活']
+description: '一年四季裡我最喜歡夏季。'
 isCJKLanguage: true
+layout: ../../layouts/MarkdownLayout.astro
 ---
 
 一年四季裡我最喜歡夏季。

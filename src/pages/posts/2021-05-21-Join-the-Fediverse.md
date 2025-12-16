@@ -1,10 +1,13 @@
 ---
-title: Join the Fediverse
+title: 'Join the Fediverse'
 date: 2021-05-21T11:12:26+08:00
 slug: 2021052102
-tags: ["杂谈", "Fediverse"]
+tags: ['杂谈', 'Fediverse']
+categories: ['其他']
 draft: false
+description: '你在這裡遇到志同道合的人，或沒有，這裡的大門永遠都敞開。'
 isCJKLanguage: true
+layout: ../../layouts/MarkdownLayout.astro
 ---
 
 之前也向親友們推薦過幾次長毛象，甚至邀請過朋友註冊Misskey，最後的效果都不理想，沒有人留下來。
