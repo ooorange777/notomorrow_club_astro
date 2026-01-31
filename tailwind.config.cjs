@@ -6,7 +6,7 @@ module.exports = {
   },
   plugins: [require("daisyui"), require("@tailwindcss/typography")],
   daisyui: {
-    themes: ["garden", "halloween"],
+    themes: ["garden", "forest"],
   },
-  darkMode: ["class", '[data-theme="halloween"]'],
+  darkMode: ["class", '[data-theme="forest"]'],
 };

@@ -12,7 +12,7 @@ if (theme === "light") {
   element.removeAttribute("data-theme");
 } else {
   element.classList.add("dark");
-  element.setAttribute("data-theme", "halloween");
+  element.setAttribute("data-theme", "forest");
 }
 
 window.localStorage.setItem("theme", theme);
@@ -21,7 +21,7 @@ const handleToggleClick = () => {
   const isDark = element.classList.contains("dark");
   localStorage.setItem("theme", isDark ? "dark" : "light");
   if (isDark) {
-    element.setAttribute("data-theme", "halloween");
+    element.setAttribute("data-theme", "forest");
     window.REMARK42.changeTheme("dark");
   } else {
     element.removeAttribute("data-theme");
