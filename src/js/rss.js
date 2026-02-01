@@ -74,4 +74,5 @@ function lastfmRss(url, name) {
   xhr.sent();
 }
 const lastfmApi = "https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=ooorange777&api_key=e571ab0f73e78879086dd7ef557a4c26&limit=10&format=json";
-lastfmRss(lastfmApi, lastfm);
+const lastfmId = "#lastfm";
+lastfmRss(lastfmApi, lastfmId);
