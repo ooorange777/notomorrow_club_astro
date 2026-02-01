@@ -71,7 +71,7 @@ function lastfmRss(url, name) {
       }
     }
   };
-  xhr.sent();
+  xhr.send();
 }
 const lastfmApi = "https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=ooorange777&api_key=e571ab0f73e78879086dd7ef557a4c26&limit=10&format=json";
 const lastfmId = "#lastfm";
