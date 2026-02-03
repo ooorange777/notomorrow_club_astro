@@ -94,10 +94,10 @@ const repos = [
   },
 ];
 function rss(url, name) {
-  const xhr = new XMLHttpRequest();
-  xhr.open("GET", url);
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState === 4) {
+  const xhr1 = new XMLHttpRequest();
+  xhr1.open("GET", url);
+  xhr1.onreadystatechange = () => {
+    if (xhr1.readyState === 4) {
       const rssContent = JSON.parse(xhr.responseText);
       for (let i = 0; i < 10; i++) {
         let title = rssContent.items[i].title;
@@ -123,7 +123,7 @@ function rss(url, name) {
       }
     }
   };
-  xhr.send();
+  xhr1.send();
 }
 for (let i = 0; i < repos.length; i++) {
   rss(repos[i]["url"], repos[i]["name"]);
@@ -164,3 +164,4 @@ const lastfmApi = "https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&u
 const lastfmId = "#lastfm";
 lastfmRss(lastfmApi, lastfmId);
 </script>
+
