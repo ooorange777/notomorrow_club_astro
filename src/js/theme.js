@@ -10,11 +10,9 @@ const theme = (() => {
 if (theme === "light") {
   element.classList.remove("dark");
   element.removeAttribute("data-theme");
-  window.REMARK42.changeTheme("light");
 } else {
   element.classList.add("dark");
   element.setAttribute("data-theme", "forest");
-  window.REMARK42.changeTheme("dark");
 }
 
 window.localStorage.setItem("theme", theme);
@@ -24,10 +22,8 @@ const handleToggleClick = () => {
   localStorage.setItem("theme", isDark ? "dark" : "light");
   if (isDark) {
     element.setAttribute("data-theme", "forest");
-    window.REMARK42.changeTheme("dark");
   } else {
     element.removeAttribute("data-theme");
-    window.REMARK42.changeTheme("light");
   }
 };
 btn.addEventListener("click", handleToggleClick);
