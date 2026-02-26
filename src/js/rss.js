@@ -1,45 +1,78 @@
 const repos = [
   {
-    url: "https://api.rss2json.com/v1/api.json?rss_url=https://letterboxd.com/ooorange/rss",
-    name: "#letterboxd",
+    rssUrl: "https://api.rss2json.com/v1/api.json?rss_url=https://letterboxd.com/ooorange/rss",
+    rssName: "#letterboxd",
   },
   {
-    url: "https://api.rss2json.com/v1/api.json?rss_url=https://www.goodreads.com/review/list_rss/129150376?shelf=read",
-    name: "#goodreads",
+    rssUrl: "https://api.rss2json.com/v1/api.json?rss_url=https://www.goodreads.com/review/list_rss/129150376?shelf=read",
+    rssName: "#goodreads",
   },
 ];
-function rss(url, name) {
-  const xhr = new XMLHttpRequest();
-  xhr.open("GET", url);
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState === 4) {
-      const rssContent = JSON.parse(xhr.responseText);
+function rss(rssUrl, rssName) {
+  const rssXhr = new XMLHttpRequest();
+  rssXhr.open("GET", rssUrl);
+  rssXhr.onreadystatechange = () => {
+    if (rssXhr.readyState === 4) {
+      const rssContent = JSON.parse(rssXhr.responseText);
       for (let i = 0; i < 10; i++) {
-        let title = rssContent.items[i].title;
-        let link = rssContent.items[i].link;
+        let rssTitle = rssContent.items[i].title;
+        let rssLink = rssContent.items[i].link;
         let patt1 = /<img.*?src="(.*?)".*?\/?>/gi;
         let patt2 = /http.*?jpg/gi;
-        let imgLink = String(rssContent.items[i]["content"].match(patt1));
-        let img = imgLink.match(patt2);
-        let titleElement = document.createElement("p");
-        let linkElement = document.createElement("a");
-        let imgElement = document.createElement("img");
+        let rssImgLink = String(rssContent.items[i]["content"].match(patt1));
+        let rssImg = rssImgLink.match(patt2);
+        let rssTitleElement = document.createElement("p");
+        let rssLinkElement = document.createElement("a");
+        let rssImgElement = document.createElement("img");
         let itemContainer = document.createElement("div");
-        document.querySelector(name).appendChild(itemContainer);
-        titleElement.textContent = title;
-        linkElement.setAttribute("href", link);
-        linkElement.setAttribute("target", "_blank");
-        imgElement.setAttribute("src", img);
-        imgElement.setAttribute("class", "w-20");
-        titleElement.setAttribute("class", "mt-5");
+        document.querySelector(rssName).appendChild(itemContainer);
+        rssTitleElement.textContent = rssTitle;
+        rssLinkElement.setAttribute("href", rssLink);
+        rssLinkElement.setAttribute("target", "_blank");
+        rssImgElement.setAttribute("src", rssImg);
+        rssImgElement.setAttribute("class", "w-20");
+        rssTitleElement.setAttribute("class", "mt-5");
         itemContainer.appendChild(linkElement);
-        linkElement.appendChild(imgElement);
-        itemContainer.appendChild(titleElement);
+        rssLinkElement.appendChild(rssImgElement);
+        itemContainer.appendChild(rssTitleElement);
       }
     }
   };
-  xhr.send();
+  rssXhr.send();
 }
 for (let i = 0; i < repos.length; i++) {
-  rss(repos[i]["url"], repos[i]["name"]);
+  rss(repos[i]["rssUrl"], repos[i]["rssName"]);
 }
+
+function lastfmRss(lastfmUrl, lastfmName) {
+  const lastfmXhr = new XMLHttpRequest();
+  lastfmXhr.open("GET", lastfmUrl);
+  lastfmXhr.onreadystatechange = () => {
+    if (lastfmXhr.readyState === 4) {
+      const topAlbums = JSON.parse(lastfmXhr.responseText);
+      for (let i = 0; i < 10; i++) {
+        let lastfmTitle = topAlbums.topalbums.album[i].name + "·" + topAlbums.topalbums.album[i].artist.name;
+        let lastfmLink = topAlbums.topalbums.album[i].url;
+        let lastfmImg = String(topAlbums.topalbums.album[i].image[1]["#text"]);
+        let lastfmTitleElement = document.createElement("p");
+        let lastfmLinkElement = document.createElement("a");
+        let lastfmImgElement = document.createElement("img");
+        let itemContainer = document.createElement("div");
+        document.querySelector(lastfmName).appendChild(itemContainer);
+        lastfmTitleElement.textContent = lastfmTitle;
+        lastfmLinkElement.setAttribute("href", lastfmLink);
+        lastfmLinkElement.setAttribute("target", "_blank");
+        lastfmImgElement.setAttribute("src", lastfmImg);
+        lastfmImgElement.setAttribute("class", "w-20");
+        lastfmTitleElement.setAttribute("class", "mt-5");
+        itemContainer.appendChild(lastfmImgElement);
+        itemContainer.appendChild(lastfmLinkElement);
+        lastfmLinkElement.appendChild(lastfmTitleElement);
+      }
+    }
+  };
+  lastfmXhr.send();
+}
+const lastfmApi = "https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=ooorange777&api_key=e571ab0f73e78879086dd7ef557a4c26&period=1month&limit=10&format=json";
+const lastfmId = "#lastfm";
+lastfmRss(lastfmApi, lastfmId);
